@@ -1,0 +1,28 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="ExcursionHelperDBEditor.Views.SelectImageWindow"
+        MinWidth="512" MinHeight="320"
+        Title="Выбор изображения">
+  <Grid RowDefinitions="Auto,*">
+    <TextBox Name="SearchTextBox" Margin="8" KeyUp="SearchTextBox_OnKeyUp"/>
+    <Button Click="CancelClick" Content="Отмена" Margin="8" HorizontalAlignment="Right"/>
+    <ListBox Grid.Row="1" Name="ImagesListBox" SelectionChanged="ImagesListBox_OnSelectionChanged">
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <Grid ColumnDefinitions="*,*,*">
+            <Image asyncImageLoader:ImageLoader.Source="{Binding Path=ImageUrl}" />
+            <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Orientation="Vertical">
+              <TextBlock Text="{Binding Path=ImageUrl}" Margin="8"/>
+              <TextBlock Text="{Binding Path=ImageDescription}" Margin="8"/>
+            </StackPanel>
+            
+          </Grid>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+  </Grid>
+</Window>

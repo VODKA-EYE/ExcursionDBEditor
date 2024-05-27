@@ -1,0 +1,69 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="ExcursionHelperDBEditor.Views.MainWindow"
+        MinHeight="160" MinWidth="768"
+        Title="Главное меню">
+  <Grid RowDefinitions="Auto,*">
+    <Menu>
+      <MenuItem Header="Экскурсии" Click="ExcursionMenuClick"/>
+      <MenuItem Header="Комментарии" Click="CommentMenuClick"/>
+    </Menu>
+    
+    <Grid Row="1" Name="ExcursionsGrid" Margin="8" RowDefinitions="Auto,*" IsVisible="False">
+      <Button Content="Создать экскурсию" Margin="8" Click="CreateNewExcursionClick"/>
+      <ListBox Grid.Row="1" Name="ExcursionsListBox" SelectionChanged="ExcursionsListBox_OnSelectionChanged">
+        <ListBox.ItemTemplate>
+          <DataTemplate>
+            <StackPanel Orientation="Horizontal">
+              <TextBlock Text="{Binding Path=ExcursionId}"/>
+              <TextBlock Text=". "/>
+              <TextBlock Text="{Binding Path=Title}"/>
+            </StackPanel>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+    </Grid>
+    
+    <!-- Comments view -->
+    <Grid Row="1" Name="CommentsGrid" RowDefinitions="Auto,Auto,*" Margin="8" IsVisible="False">
+      <Grid Grid.RowDefinitions="Auto,Auto,*">
+        <StackPanel Orientation="Horizontal">
+          <ComboBox Name="CommentsExcursionSelectionComboBox">
+            <ComboBox.ItemTemplate>
+              <DataTemplate>
+                <TextBlock Text="{Binding Path=Title}" />
+              </DataTemplate>
+            </ComboBox.ItemTemplate>
+          </ComboBox>
+          <ComboBox Name="CommentsDateSortComboBox" SelectedIndex="0">
+            <ComboBoxItem>Сортировка по датам</ComboBoxItem>
+            <ComboBoxItem>Сначала новые</ComboBoxItem>
+            <ComboBoxItem>Сначала старые</ComboBoxItem>
+          </ComboBox>
+        </StackPanel>
+        
+        <Grid Grid.Row="1" ColumnDefinitions="*,*,*,*,*">
+          <TextBlock Grid.Column="0" Text=" Комментатор "/>
+          <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Text=" Комментарий "/>
+          <TextBlock Grid.Column="3" Text=" Время публикации "/>
+          <TextBlock Grid.Column="4" Text=" Название экскурсии "/>
+        </Grid>
+        <ListBox Grid.Row="2" Name="CommentsListBox">
+          <ListBox.ItemTemplate>
+            <DataTemplate>
+              <Grid ColumnDefinitions="*,*,*,*,*">
+                <TextBlock Grid.Column="0" TextWrapping="WrapWithOverflow" Text="{Binding Path=Commentator}"/>
+                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow" Text="{Binding Path=Commentary}"/>
+                <TextBlock Grid.Column="3" TextWrapping="WrapWithOverflow" Text="{Binding Path=CommentDate}"/>
+                <TextBlock Grid.Column="4" TextWrapping="WrapWithOverflow" Text="{Binding Path=Excursion.Title}"/>
+              </Grid>
+            </DataTemplate>
+          </ListBox.ItemTemplate>
+        </ListBox>
+      </Grid>
+    </Grid>
+  </Grid>
+</Window>

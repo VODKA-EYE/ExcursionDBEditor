@@ -1,0 +1,75 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="940" d:DesignHeight="384"
+        x:Class="ExcursionHelperDBEditor.Views.ExcursionEditingWindow"
+        MinWidth="940" MinHeight="384"
+        Title="Редактирование экскурсии">
+  <Grid Margin="8" ColumnDefinitions="*,*,*" RowDefinitions="16,Auto,Auto,Auto,*,Auto,32">
+    <StackPanel Grid.Row="1" Grid.Column="0">
+      <TextBlock Text="Название экскурсии: "/>
+      <TextBox Name="ExcursionTitleTextBox" TextWrapping="WrapWithOverflow"/>
+    </StackPanel>
+    <StackPanel Grid.Row="2" Grid.Column="0">
+      <TextBlock Text="Ссылка на изображения карты экскурсии: "/>
+      <TextBox Name="ExcursionMapImageUrlTextBox" TextWrapping="WrapWithOverflow"/>
+    </StackPanel>
+    <StackPanel Grid.Row="3" Grid.Column="0">
+      <TextBlock Text="Ссылка на карту экскурсии: "/>
+      <TextBox Name="ExcursionMapUrlTextBox" TextWrapping="WrapWithOverflow"/>
+    </StackPanel>
+    <StackPanel Grid.Row="4" Grid.Column="0">
+      <TextBlock Text="Описание экскурсии: "/>
+      <TextBox Name="ExcursionDescriptionTextBox" TextWrapping="WrapWithOverflow" KeyUp="ExcursionDescriptionTextBox_OnKeyUp"/>
+    </StackPanel>
+    <StackPanel Grid.Row="5" Grid.Column="0" Margin="8">
+      <Button Content="Сохранить экскурсию" Click="SaveButtonClick" Width="180" Margin="4"/>
+      <Button Content="Выйти без сохранения" Click="ExithWithoutSaving" Width="180" Margin="4"/>
+      <Button Content="Удалить экскурсию" Click="DeleteExcursion" Width="180" Margin="4"/>
+    </StackPanel>
+    
+    
+    
+    <Grid Grid.Row="1" Grid.Column="1"  ColumnDefinitions="*,*,*" Margin="8" VerticalAlignment="Bottom">
+      <TextBlock  VerticalAlignment="Top"  Text="Остановки:"/>
+      <TextBlock Grid.Column="0" Text="Порядок" VerticalAlignment="Bottom"/>
+      <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Text="Название" VerticalAlignment="Bottom"/>
+      <StackPanel Grid.Column="2" HorizontalAlignment="Right" Orientation="Horizontal">
+        <Button  Content="+"  Click="AddCheckpoint"/>
+        <Button Content="-" Click="RemoveCheckpoint"/>
+      </StackPanel>
+    </Grid>
+    <ListBox Grid.Row="2" Grid.RowSpan="4" Grid.Column="1" Margin="8" Name="CheckpointsListbox" SelectionChanged="CheckpointsListbox_OnSelectionChanged">
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <Grid ColumnDefinitions="*,*,*,32">
+            <TextBox Text="{Binding Path=OrderNumber}"/>
+            <TextBox Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Path=Title}"/>
+          </Grid>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+    
+    <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Top" Margin="8" Text="Изображения:"/>
+    <StackPanel Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Orientation="Horizontal">
+      <Button  Content="+ Новый"  Click="AddImage"/>
+      <Button  Content="+ Выбрать"  Click="AddExistingImage"/>
+      <Button Content="-" Click="RemoveImage"/>
+    </StackPanel>
+    <Grid Grid.Column="2" Grid.Row="2" ColumnDefinitions="32,*,*" Margin="8" VerticalAlignment="Bottom">
+      <TextBlock Grid.Column="1" Text="Ссылка на изображение" TextWrapping="Wrap"/>
+      <TextBlock Grid.Column="2" Text="Описание изображения" TextWrapping="Wrap"/>
+    </Grid>
+    <ListBox Grid.Row="3" Grid.RowSpan="3" Grid.Column="2" Margin="8" Name="ImagesListbox">
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <Grid ColumnDefinitions="32,*,*">
+            <TextBox Grid.Column="1" Text="{Binding Path=ImageUrl}" TextWrapping="WrapWithOverflow" KeyUp="ImageTextChanged"/>
+            <TextBox Grid.Column="2" Text="{Binding Path=ImageDescription}" TextWrapping="WrapWithOverflow" KeyUp="ImageTextChanged"/>
+          </Grid>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+  </Grid>
+</Window>
