@@ -6,7 +6,8 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="ExcursionHelperDBEditor.Views.SelectImageWindow"
         MinWidth="512" MinHeight="320"
-        Title="Выбор изображения">
+        Title="Выбор изображения"
+        Icon="/Icons/Logo.ico">
   <Grid RowDefinitions="Auto,*">
     <TextBox Name="SearchTextBox" Margin="8" KeyUp="SearchTextBox_OnKeyUp"/>
     <Button Click="CancelClick" Content="Отмена" Margin="8" HorizontalAlignment="Right"/>

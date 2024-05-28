@@ -5,7 +5,8 @@
         mc:Ignorable="d" d:DesignWidth="940" d:DesignHeight="384"
         x:Class="ExcursionHelperDBEditor.Views.ExcursionEditingWindow"
         MinWidth="940" MinHeight="384"
-        Title="Редактирование экскурсии">
+        Title="Редактирование экскурсии"
+        Icon="/Icons/Logo.ico">
   <Grid Margin="8" ColumnDefinitions="*,*,*" RowDefinitions="16,Auto,Auto,Auto,*,Auto,32">
     <StackPanel Grid.Row="1" Grid.Column="0">
       <TextBlock Text="Название экскурсии: "/>

@@ -1,0 +1,12 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="ExcursionHelperDBEditor.Views.ErrorMessageBox"
+        Title="Ошибка"
+        Icon="/Icons/Logo.ico"
+        CanResize="False"
+        Width="250" Height="32">
+  <TextBlock Margin="8">Нет соединения с базой данных</TextBlock>
+</Window>

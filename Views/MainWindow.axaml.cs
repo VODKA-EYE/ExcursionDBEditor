@@ -15,7 +15,6 @@ public partial class MainWindow : Window
   public MainWindow()
   {
     InitializeComponent();
-    LoadExcursionTitlesInCombobox();
     
     CommentsDateSortComboBox.SelectionChanged += ComboBoxesSelectionChanged;
     CommentsExcursionSelectionComboBox.SelectionChanged += ComboBoxesSelectionChanged;
@@ -72,17 +71,34 @@ public partial class MainWindow : Window
   private void ExcursionMenuClick(object? sender, RoutedEventArgs e)
   {
     CommentsGrid.IsVisible = false;
-    
     ExcursionsGrid.IsVisible = true;
-    LoadExcursions();
+    try
+    {
+      LoadExcursions();
+    }
+    catch (Exception exception)
+    {
+      ErrorMessageBox EMB = new();
+      EMB.Show();
+      Close();
+    }
   }
 
   private void CommentMenuClick(object? sender, RoutedEventArgs e)
   {
-    ExcursionsGrid.IsVisible = false;
-
-    CommentsGrid.IsVisible = true;
-    LoadComments();
+    try
+    {
+      ExcursionsGrid.IsVisible = false;
+      CommentsGrid.IsVisible = true;
+      LoadExcursionTitlesInCombobox();
+      LoadComments();
+    }
+    catch (Exception exception)
+    {
+      ErrorMessageBox EMB = new();
+      EMB.Show();
+      Close();
+    }
   }
 
   private void ExcursionsListBox_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)

@@ -5,13 +5,13 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="ExcursionHelperDBEditor.Views.MainWindow"
         MinHeight="160" MinWidth="768"
-        Title="Главное меню">
+        Title="Главное меню"
+        Icon="/Icons/Logo.ico">
   <Grid RowDefinitions="Auto,*">
     <Menu>
       <MenuItem Header="Экскурсии" Click="ExcursionMenuClick"/>
       <MenuItem Header="Комментарии" Click="CommentMenuClick"/>
     </Menu>
-    
     <Grid Row="1" Name="ExcursionsGrid" Margin="8" RowDefinitions="Auto,*" IsVisible="False">
       <Button Content="Создать экскурсию" Margin="8" Click="CreateNewExcursionClick"/>
       <ListBox Grid.Row="1" Name="ExcursionsListBox" SelectionChanged="ExcursionsListBox_OnSelectionChanged">
