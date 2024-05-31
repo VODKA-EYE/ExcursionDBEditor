@@ -19,6 +19,8 @@ public partial class MainWindow : Window
     CommentsDateSortComboBox.SelectionChanged += ComboBoxesSelectionChanged;
     CommentsExcursionSelectionComboBox.SelectionChanged += ComboBoxesSelectionChanged;
   }
+  
+  // Comments menu related
 
   private void LoadComments()
   {
@@ -46,7 +48,10 @@ public partial class MainWindow : Window
   
   private void ComboBoxesSelectionChanged(object? sender, SelectionChangedEventArgs e)
   {
-    LoadComments();
+    if (CommentsExcursionSelectionComboBox.SelectedItem != null)
+    {
+      LoadComments();
+    }
   }
 
   private void LoadExcursionTitlesInCombobox()
@@ -60,30 +65,18 @@ public partial class MainWindow : Window
     CommentsExcursionSelectionComboBox.ItemsSource = excursions;
     CommentsExcursionSelectionComboBox.SelectedIndex = 0;
   }
-
-  private void LoadExcursions()
+  
+  private void DeleteCommentClick(object? sender, RoutedEventArgs e)
   {
-    List<Excursion> excursions = dbcontext.Excursions.OrderBy(e => e.ExcursionId).ToList();
-    ExcursionsListBox.ItemsSource = excursions;
-  }
-
-
-  private void ExcursionMenuClick(object? sender, RoutedEventArgs e)
-  {
-    CommentsGrid.IsVisible = false;
-    ExcursionsGrid.IsVisible = true;
-    try
+    if (CommentsListBox.SelectedItem != null)
     {
-      LoadExcursions();
-    }
-    catch (Exception exception)
-    {
-      ErrorMessageBox EMB = new();
-      EMB.Show();
-      Close();
+      Comment comment = (Comment) CommentsListBox.SelectedItem;
+      dbcontext.Comments.Remove(comment);
+      dbcontext.SaveChanges();
+      LoadComments();
     }
   }
-
+  
   private void CommentMenuClick(object? sender, RoutedEventArgs e)
   {
     try
@@ -99,6 +92,31 @@ public partial class MainWindow : Window
       EMB.Show();
       Close();
     }
+  }
+  
+  
+  // Excursion menu related
+  
+  private void ExcursionMenuClick(object? sender, RoutedEventArgs e)
+  {
+    CommentsGrid.IsVisible = false;
+    ExcursionsGrid.IsVisible = true;
+    try
+    {
+      LoadExcursions();
+    }
+    catch (Exception exception)
+    {
+      ErrorMessageBox EMB = new();
+      EMB.Show();
+      Close();
+    }
+  }
+  
+  private void LoadExcursions()
+  {
+    List<Excursion> excursions = dbcontext.Excursions.OrderBy(e => e.ExcursionId).ToList();
+    ExcursionsListBox.ItemsSource = excursions;
   }
 
   private void ExcursionsListBox_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
@@ -125,4 +143,5 @@ public partial class MainWindow : Window
     await eew.ShowDialog(this);
     LoadExcursions();
   }
+  
 }

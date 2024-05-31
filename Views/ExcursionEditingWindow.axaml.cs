@@ -132,13 +132,13 @@ public partial class ExcursionEditingWindow : Window
         _selectedCheckpoint.Images = images;
         dbcontext.Checkpoints.Update(_selectedCheckpoint);
         imagesError = false;
-        ImagesListbox.Background = Brushes.WhiteSmoke;
+        ImagesListbox.Background = Brushes.LightBlue;
       }
       _selectedCheckpoint = (Checkpoint) CheckpointsListbox.SelectedItem;
       ImagesListbox.ItemsSource = _selectedCheckpoint.Images.ToList();
       imageDataChanged = false;
+      CheckpointsListbox.Background = Brushes.LightBlue;
     }
-    CheckpointsListbox.Background = Brushes.WhiteSmoke;
   }
 
   private void AddImage(object? sender, RoutedEventArgs e)
@@ -229,7 +229,7 @@ public partial class ExcursionEditingWindow : Window
     imageDataChanged = true;
     if (imagesError)
     {
-      ImagesListbox.Background = Brushes.WhiteSmoke;
+      ImagesListbox.Background = Brushes.LightBlue;
     }
   }
 

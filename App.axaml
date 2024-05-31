@@ -5,6 +5,11 @@
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.Styles>
-        <FluentTheme />
+      <FluentTheme>
+        <FluentTheme.Palettes>
+          <ColorPaletteResources x:Key="Light" Accent="#ff609090" AltHigh="White" AltLow="White" AltMedium="White" AltMediumHigh="White" AltMediumLow="White" BaseHigh="Black" BaseLow="#ff71aaad" BaseMedium="#ff2d7278" BaseMediumHigh="#ff004d54" BaseMediumLow="#ff176066" ChromeAltLow="#ff004d54" ChromeBlackHigh="Black" ChromeBlackLow="#ff71aaad" ChromeBlackMedium="#ff004d54" ChromeBlackMediumLow="#ff2d7278" ChromeDisabledHigh="#ff71aaad" ChromeDisabledLow="#ff2d7278" ChromeGray="#ff176066" ChromeHigh="#ff71aaad" ChromeLow="#ffbae3e5" ChromeMedium="#ffabd8da" ChromeMediumLow="#ffbae3e5" ChromeWhite="White" ListLow="#ffabd8da" ListMedium="#ff71aaad" RegionColor="#ffd6f0fb" />
+          <ColorPaletteResources x:Key="Dark" Accent="#ff436963" AltHigh="Black" AltLow="Black" AltMedium="Black" AltMediumHigh="Black" AltMediumLow="Black" BaseHigh="White" BaseLow="#ff133d3b" BaseMedium="#ff7ea19f" BaseMediumHigh="#ff99bab8" BaseMediumLow="#ff496f6d" ChromeAltLow="#ff99bab8" ChromeBlackHigh="Black" ChromeBlackLow="#ff99bab8" ChromeBlackMedium="Black" ChromeBlackMediumLow="Black" ChromeDisabledHigh="#ff133d3b" ChromeDisabledLow="#ff7ea19f" ChromeGray="#ff638886" ChromeHigh="#ff638886" ChromeLow="#ff04201d" ChromeMedium="#ff082724" ChromeMediumLow="#ff0f3633" ChromeWhite="White" ListLow="#ff082724" ListMedium="#ff133d3b" RegionColor="#ff133333" />
+        </FluentTheme.Palettes>
+      </FluentTheme>
     </Application.Styles>
 </Application>

@@ -7,8 +7,8 @@
         MinHeight="160" MinWidth="768"
         Title="Главное меню"
         Icon="/Icons/Logo.ico">
-  <Grid RowDefinitions="Auto,*">
-    <Menu>
+  <Grid RowDefinitions="Auto,*" Name="MainGrid">
+    <Menu Background="White">
       <MenuItem Header="Экскурсии" Click="ExcursionMenuClick"/>
       <MenuItem Header="Комментарии" Click="CommentMenuClick"/>
     </Menu>
@@ -28,9 +28,8 @@
     </Grid>
     
     <!-- Comments view -->
-    <Grid Row="1" Name="CommentsGrid" RowDefinitions="Auto,Auto,*" Margin="8" IsVisible="False">
-      <Grid Grid.RowDefinitions="Auto,Auto,*">
-        <StackPanel Orientation="Horizontal">
+    <Grid Row="1" Name="CommentsGrid" RowDefinitions="Auto,Auto,*"  IsVisible="False">
+        <StackPanel Orientation="Horizontal" Margin="8">
           <ComboBox Name="CommentsExcursionSelectionComboBox">
             <ComboBox.ItemTemplate>
               <DataTemplate>
@@ -43,27 +42,29 @@
             <ComboBoxItem>Сначала новые</ComboBoxItem>
             <ComboBoxItem>Сначала старые</ComboBoxItem>
           </ComboBox>
+          <StackPanel Width="8"/>
+          <Button Content="Удалить комментарий" Click="DeleteCommentClick"/>
         </StackPanel>
         
-        <Grid Grid.Row="1" ColumnDefinitions="*,*,*,*,*">
+        <Grid Grid.Row="1" ColumnDefinitions="*,*,*,*,*" Margin="8">
           <TextBlock Grid.Column="0" Text=" Комментатор "/>
           <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Text=" Комментарий "/>
           <TextBlock Grid.Column="3" Text=" Время публикации "/>
           <TextBlock Grid.Column="4" Text=" Название экскурсии "/>
         </Grid>
-        <ListBox Grid.Row="2" Name="CommentsListBox">
+        <ListBox Grid.Row="2" Name="CommentsListBox"> 
           <ListBox.ItemTemplate>
             <DataTemplate>
-              <Grid ColumnDefinitions="*,*,*,*,*">
+              <Grid ColumnDefinitions="*,*,*,*,*" RowDefinitions="*,1" >
                 <TextBlock Grid.Column="0" TextWrapping="WrapWithOverflow" Text="{Binding Path=Commentator}"/>
                 <TextBlock Grid.Column="1" Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow" Text="{Binding Path=Commentary}"/>
                 <TextBlock Grid.Column="3" TextWrapping="WrapWithOverflow" Text="{Binding Path=CommentDate}"/>
                 <TextBlock Grid.Column="4" TextWrapping="WrapWithOverflow" Text="{Binding Path=Excursion.Title}"/>
+                <StackPanel Grid.ColumnSpan="5" Grid.Row="1" Background="#71AAAD"/>
               </Grid>
             </DataTemplate>
           </ListBox.ItemTemplate>
         </ListBox>
       </Grid>
     </Grid>
-  </Grid>
 </Window>

@@ -8,6 +8,8 @@
         Title="Редактирование экскурсии"
         Icon="/Icons/Logo.ico">
   <Grid Margin="8" ColumnDefinitions="*,*,*" RowDefinitions="16,Auto,Auto,Auto,*,Auto,32">
+    
+    <!-- Text data and buttons, column 1 -->
     <StackPanel Grid.Row="1" Grid.Column="0">
       <TextBlock Text="Название экскурсии: "/>
       <TextBox Name="ExcursionTitleTextBox" TextWrapping="WrapWithOverflow"/>
@@ -30,8 +32,7 @@
       <Button Content="Удалить экскурсию" Click="DeleteExcursion" Width="180" Margin="4"/>
     </StackPanel>
     
-    
-    
+    <!-- Checkpoint listbox, column 2 -->
     <Grid Grid.Row="1" Grid.Column="1"  ColumnDefinitions="*,*,*" Margin="8" VerticalAlignment="Bottom">
       <TextBlock  VerticalAlignment="Top"  Text="Остановки:"/>
       <TextBlock Grid.Column="0" Text="Порядок" VerticalAlignment="Bottom"/>
@@ -52,6 +53,7 @@
       </ListBox.ItemTemplate>
     </ListBox>
     
+    <!-- Images listbox, column 3-->
     <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Top" Margin="8" Text="Изображения:"/>
     <StackPanel Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Orientation="Horizontal">
       <Button  Content="+ Новый"  Click="AddImage"/>
